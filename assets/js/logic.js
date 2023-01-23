@@ -16,7 +16,30 @@ let sfxRight = new Audio("assets/sfx/correct.wav");
 let sfxWrong = new Audio("assets/sfx/incorrect.wav");
 
 function questionClick(){
-  alert("You clicked");
+  //alert("You clicked");
+  if (this.value!==questions[currentQuestionIndex].answer){
+      time -= 15;
+  if (time<0){
+     time = 0;
+  }
+   timerElement.textContent = time
+   feedbackElement.textContent = "Wrong";
+  }else{
+    sfxRight.play();
+    feedbackElement.textContent = "Correct!!";
+  }
+  feedbackElement.setAttribute("class", "feedbackk");
+  setTimeout(function(){
+
+    feedbackElement.setAttribute("class", "feedback hide");
+  },1000);
+  currentQuestionIndex++;
+
+  if(currentQuestionIndex === questions.length){ 
+    quizEnd();
+  }else{
+    getQuestions();
+  }
 }
 
 function getQuestions(){
@@ -92,7 +115,20 @@ function quizEnd(){
 
 
 function saveHighScore(){
+   let initials = initialElement.value.trim();
+   if(initials !== ""){
+    let highScores = JSON.parse(localStorage.getItem("highscores") || []); 
+    let newScore ={
+        score: time,
+        initials: initials,
 
+    }   
+    highScores.push(newScore);
+    localStorage.setItem("highscores", JSON.stringify(highScores));
+
+    windows.location.href = "highscores.html";
+
+   }
 
 }
 
