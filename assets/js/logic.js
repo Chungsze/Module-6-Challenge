@@ -28,7 +28,7 @@ function questionClick(){
     sfxRight.play();
     feedbackElement.textContent = "Correct!!";
   }
-  feedbackElement.setAttribute("class", "feedbackk");
+  feedbackElement.setAttribute("class", "feedback");
   setTimeout(function(){
 
     feedbackElement.setAttribute("class", "feedback hide");
@@ -55,7 +55,7 @@ function getQuestions(){
         choiceButton.setAttribute("class", "choice");
         choiceButton.setAttribute("value", choice);
 
-        choiceButton.textContent = ` ${index + 1}.${choice}`;
+        choiceButton.textContent = `${index + 1}.${choice}`;
 
         choiceButton.addEventListener("click", questionClick);
 
@@ -117,7 +117,7 @@ function quizEnd(){
 function saveHighScore(){
    let initials = initialElement.value.trim();
    if(initials !== ""){
-    let highScores = JSON.parse(localStorage.getItem("highscores") || []); 
+    let highScores = JSON.parse(localStorage.getItem("highscores")) ||[]; 
     let newScore ={
         score: time,
         initials: initials,
@@ -133,6 +133,9 @@ function saveHighScore(){
 }
 
 function checkForEnter(event){
+  if(event.key==="Enter"){
+      saveHighScore();
+  }
 
 }
 

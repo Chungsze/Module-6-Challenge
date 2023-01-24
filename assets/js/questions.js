@@ -15,8 +15,7 @@ let questions =[
 
   {
     "title": " In JavaScript, what is a block of statement ?",
-    "choices": ["Conditional block","block that combines a number of statements into a single compound statement",
-           "both conditional block and a single statement","block that contains a single statement"],
+    "choices": ["Conditional block","block that combines a number of statements into a single compound statement","both conditional block and a single statement","block that contains a single statement"],
     "answer": "block that combines a number of statements into a single compound statement"
 
   }
